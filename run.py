@@ -2,11 +2,16 @@
 """Point d'entrée IvoirLLM Guard."""
 import argparse
 import sys
+from pathlib import Path
+
+# Ajouter src/ au path pour importer runner
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
+from runner import run as run_tests
 
 
 def cmd_run(args):
-    print("[run] Lancement des tests — à implémenter (Phase 3)")
-    # TODO: charger data/prompts.json, appeler src/runner.py
+    output = Path(args.output) if args.output else None
+    run_tests(output)
 
 
 def cmd_analyze(args):
@@ -22,6 +27,7 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_run = sub.add_parser("run", help="Lancer les tests sur le modèle")
+    p_run.add_argument("--output", default=None, help="Fichier de sortie (défaut: reports/raw_<timestamp>.json)")
     p_run.set_defaults(func=cmd_run)
 
     p_analyze = sub.add_parser("analyze", help="Analyser les résultats et générer le rapport")
