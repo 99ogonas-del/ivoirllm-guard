@@ -12,7 +12,8 @@ from analyze import analyze as run_analyze
 
 def cmd_run(args):
     output = Path(args.output) if args.output else None
-    run_tests(output, args.limit)
+    prompts = Path(args.prompts) if args.prompts else None
+    run_tests(output, args.limit, prompts)
 
 
 def cmd_analyze(args):
@@ -33,9 +34,11 @@ def main():
     p_run = sub.add_parser("run", help="Lancer les tests sur le modèle")
     p_run.add_argument("--output", default=None, help="Fichier de sortie (défaut: reports/raw_<timestamp>.json)")
     p_run.add_argument("--limit", type=int, default=None, help="Limiter à N prompts (pilote)")
+    p_run.add_argument("--prompts", default=None, help="Fichier de prompts personnalisé")
     p_run.set_defaults(func=cmd_run)
 
     p_analyze = sub.add_parser("analyze", help="Analyser les résultats et générer le rapport")
+    p_analyze.add_argument("--input", default=None, help="Fichier brut à analyser (défaut: le plus récent)")
     p_analyze.set_defaults(func=cmd_analyze)
 
     args = parser.parse_args()

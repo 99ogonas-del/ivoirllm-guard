@@ -52,8 +52,13 @@ def query_model(prompt: str) -> dict:
 
 from typing import Optional
 
-def run(output_file: Optional[Path] = None, limit: Optional[int] = None):
-    prompts = load_prompts()
+def run(output_file: Optional[Path] = None, limit: Optional[int] = None, prompts_file: Optional[Path] = None):
+    if prompts_file is not None:
+        pf = Path(prompts_file)
+    else:
+        pf = PROMPTS_FILE
+    with open(pf, encoding="utf-8") as f:
+        prompts = json.load(f)
     if limit is not None:
         prompts = prompts[:limit]
     if output_file is None:
