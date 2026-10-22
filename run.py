@@ -7,6 +7,7 @@ from pathlib import Path
 # Ajouter src/ au path pour importer runner
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 from runner import run as run_tests
+from analyze import analyze as run_analyze
 
 
 def cmd_run(args):
@@ -15,8 +16,11 @@ def cmd_run(args):
 
 
 def cmd_analyze(args):
-    print("[analyze] Analyse des résultats — à implémenter (Phase 4)")
-    # TODO: lire reports/raw_*.json, générer reports/report.md
+    input_path = Path(args.input) if args.input else None
+    if input_path:
+        run_analyze(input_path)
+    else:
+        run_analyze(None)
 
 
 def main():
