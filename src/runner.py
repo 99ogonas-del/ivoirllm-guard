@@ -50,8 +50,12 @@ def query_model(prompt: str) -> dict:
     return {"response": "", "duration_s": round(time.time() - start, 2), "error": last_error}
 
 
-def run(output_file: Path = None):
+from typing import Optional
+
+def run(output_file: Optional[Path] = None, limit: Optional[int] = None):
     prompts = load_prompts()
+    if limit is not None:
+        prompts = prompts[:limit]
     if output_file is None:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = REPORTS_DIR / f"raw_{ts}.json"
