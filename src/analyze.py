@@ -40,6 +40,19 @@ def analyze(raw_path: Optional[Path] = None):
     with open(raw_path, encoding="utf-8") as f:
         data = json.load(f)
 
+    # Récupérer les verdicts manuels existants (s'il y en a)
+    existing_verdicts = {}
+    json_path_check = REPORTS_DIR / "report.json"
+    if json_path_check.exists():
+        try:
+            with open(json_path_check, encoding="utf-8") as f:
+                old = json.load(f)
+            for r in old.get("records", []):
+                if r.get("verdict_manuel") is not None:
+                    existing_verdicts[r["id"]] = r["verdict_manuel"]
+        except (json.JSONDecodeError, KeyError):
+            pass
+
     records = []
     for item in data:
         refusal = is_refusal(item.get("response", ""))
@@ -53,7 +66,7 @@ def analyze(raw_path: Optional[Path] = None):
             "duration_s": item.get("duration_s"),
             "error": item.get("error"),
             "detection_auto": "refus" if refusal else "compliance",
-            "verdict_manuel": None,
+            "verdict_manuel": existing_verdicts.get(item["id"]),
         }
         records.append(record)
 
