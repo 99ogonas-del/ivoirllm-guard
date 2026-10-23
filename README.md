@@ -81,7 +81,7 @@ ivoirllm_guard/
 
 ## Auteur
 
-PDG Ogonas — étudiant en Réseau et Sécurité Informatique (Université Virtuelle de Côte d'Ivoire - UVCI)
+OgonasSec — étudiant en Réseau et Sécurité Informatique (Université Virtuelle de Côte d'Ivoire - UVCI)
 
 ## Licence
 
