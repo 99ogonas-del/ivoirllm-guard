@@ -4,7 +4,9 @@
 
 IvoirLLM Guard : j'ai testé la résistance d'un modèle de langage face aux attaques en français et en langues ivoiriennes
 
-Pendant plusieurs semaines, j'ai construit un outil de test de sécurité pour modèles de langage (LLM) dans le contexte ivoirien. Le principe : envoyer 50 questions pièges à un modèle (Mistral 7B) et mesurer s'il résiste ou s'il génère du contenu dangereux.
+Pendant plusieurs semaines, j'ai construit un outil de test de sécurité pour modèles de langage (LLM) dans le contexte ivoirien. Le principe : envoyer 50 questions pièges à un modèle et mesurer s'il résiste ou s'il génère du contenu dangereux.
+
+Modèle testé : Mistral 7B (via Ollama, en local)
 
 Resultats
 
@@ -26,9 +28,9 @@ Personne n'avait publié de tests de sécurité LLM pour la Côte d'Ivoire. Les 
 
 Le code est open source sur GitHub : https://github.com/99ogonas-del/ivoirllm-guard
 
-Je suis étudiant en Réseau et Sécurité Informatique (ESATIC, Côte d'Ivoire). Ce projet fait partie de mon portfolio en cybersécurité.
+Je suis étudiant en Réseau et Sécurité Informatique (Université Virtuelle de Côte d'Ivoire - UVCI). Ce projet fait partie de mon portfolio en cybersécurité.
 
-Hashtags : #CyberSecurite #IA #LLM #CoteDIvoire #Securite #OpenSource #ESATIC #TechAfrica #PromptInjection
+Hashtags : #CyberSecurite #IA #LLM #CoteDIvoire #Securite #OpenSource #UVCI #TechAfrica #PromptInjection
 
 ---
 
